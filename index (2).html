@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kirana Kuphi — Kedai Kopi Asli Indonesia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root {
+  --cream:#F5EDD6;--brown-deep:#1C0A00;--brown-rich:#3D1A00;--brown-mid:#6B3A1F;
+  --gold:#C8922A;--gold-light:#E8B84B;--text-muted:#9A7B5A;
+  --green:#1a7a3a;--green-light:#22a04d;--red:#8B1A1A;--red-light:#c0392b;
+  --blue:#1a3d7a;--blue-light:#2563eb;--orange:#a04a00;--orange-light:#d96c00;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--brown-deep);color:var(--cream);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+
+/* ===== CUSTOMER SITE ===== */
+#customerSite{display:block;}
+#adminPanel{display:none;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(28,10,0,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(200,146,42,0.2);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:900;color:var(--gold-light);}
+.nav-logo span{color:var(--cream);font-style:italic;}
+.nav-links{display:flex;gap:2rem;align-items:center;}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:0.9rem;font-weight:500;opacity:0.8;transition:opacity 0.2s,color 0.2s;}
+.nav-links a:hover{opacity:1;color:var(--gold-light);}
+.nav-cta{background:var(--gold)!important;color:var(--brown-deep)!important;padding:0.5rem 1.2rem!important;border-radius:50px!important;opacity:1!important;font-weight:700!important;}
+.nav-cta:hover{background:var(--gold-light)!important;}
+.nav-admin-btn{background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.3);color:var(--gold);padding:0.4rem 1rem;border-radius:50px;font-size:0.78rem;font-weight:700;cursor:pointer;letter-spacing:0.5px;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.nav-admin-btn:hover{background:rgba(200,146,42,0.25);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:6rem 2rem 4rem;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 40%,#3D1A00 0%,#1C0A00 60%,#0D0400 100%);}
+.hero-circle{position:absolute;border-radius:50%;border:1px solid rgba(200,146,42,0.15);animation:pulse-ring 4s ease-in-out infinite;}
+.hero-circle:nth-child(1){width:400px;height:400px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-circle:nth-child(2){width:620px;height:620px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:0.8s;}
+.hero-circle:nth-child(3){width:840px;height:840px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:1.6s;}
+@keyframes pulse-ring{0%,100%{opacity:0.3;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.6;transform:translate(-50%,-50%) scale(1.03);}}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:800px;}
+.hero-tag{display:inline-block;background:rgba(200,146,42,0.15);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-size:0.75rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:0.4rem 1.2rem;border-radius:50px;margin-bottom:1.5rem;animation:fade-up 0.8s ease both;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6rem);font-weight:900;line-height:1.05;color:var(--cream);animation:fade-up 0.8s ease 0.1s both;}
+.hero-title em{font-style:italic;color:var(--gold-light);}
+.hero-sub{font-size:1.1rem;color:var(--text-muted);margin:1.5rem auto;max-width:500px;line-height:1.7;animation:fade-up 0.8s ease 0.2s both;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fade-up 0.8s ease 0.3s both;}
+.btn-primary{background:var(--gold);color:var(--brown-deep);padding:0.9rem 2.2rem;border-radius:50px;font-size:1rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s;display:inline-flex;align-items:center;gap:0.5rem;font-family:'DM Sans',sans-serif;}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--cream);padding:0.9rem 2.2rem;border-radius:50px;font-size:1rem;font-weight:600;text-decoration:none;border:1.5px solid rgba(245,237,214,0.35);cursor:pointer;transition:border-color 0.2s,background 0.2s;display:inline-flex;align-items:center;gap:0.5rem;}
+.btn-outline:hover{border-color:var(--cream);background:rgba(245,237,214,0.07);}
+.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:3.5rem;animation:fade-up 0.8s ease 0.4s both;}
+.stat-item{text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold-light);}
+.stat-label{font-size:0.78rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;}
+@keyframes fade-up{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+section{position:relative;z-index:1;}
+.section-label{display:inline-block;color:var(--gold);font-size:0.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;margin-bottom:0.8rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.15;color:var(--cream);}
+.section-title em{font-style:italic;color:var(--gold-light);}
+
+/* MENU */
+#menu{padding:6rem 2rem;background:var(--brown-rich);}
+.menu-header{text-align:center;margin-bottom:3.5rem;}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;max-width:1150px;margin:0 auto;}
+.menu-card{background:rgba(245,237,214,0.04);border:1px solid rgba(200,146,42,0.18);border-radius:20px;cursor:pointer;transition:transform 0.25s,background 0.25s,border-color 0.25s,box-shadow 0.25s;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.menu-card:hover{transform:translateY(-6px);background:rgba(245,237,214,0.08);border-color:rgba(200,146,42,0.5);box-shadow:0 20px 40px rgba(0,0,0,0.45);}
+.menu-card.selected{background:rgba(200,146,42,0.12);border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,146,42,0.3),0 20px 40px rgba(0,0,0,0.4);}
+.menu-img-wrap{width:100%;height:190px;overflow:hidden;border-radius:18px 18px 0 0;position:relative;background:#2a1000;}
+.menu-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;}
+.menu-card:hover .menu-img-wrap img{transform:scale(1.07);}
+.menu-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(28,10,0,0.7) 100%);}
+.menu-badge-img{position:absolute;top:0.8rem;right:0.8rem;font-size:0.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:0.28rem 0.7rem;border-radius:50px;}
+.menu-badge-img.hot{background:rgba(139,26,26,0.85);color:#FFAAAA;border:1px solid rgba(255,120,120,0.4);}
+.menu-badge-img.cold{background:rgba(20,60,140,0.85);color:#AADDFF;border:1px solid rgba(80,160,255,0.4);}
+.menu-badge-img.special{background:rgba(40,70,15,0.85);color:#BBEE70;border:1px solid rgba(120,200,30,0.4);}
+.menu-body{padding:1.2rem 1.4rem 1.4rem;flex:1;display:flex;flex-direction:column;}
+.menu-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--cream);margin-bottom:0.35rem;}
+.menu-desc{font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem;flex:1;}
+.menu-bottom{display:flex;align-items:center;justify-content:space-between;}
+.menu-price{font-size:1.15rem;font-weight:700;color:var(--gold-light);}
+.add-hint{font-size:0.72rem;color:var(--text-muted);font-weight:500;transition:color 0.2s;}
+.menu-card:hover .add-hint{color:var(--gold);}
+.menu-card.selected .add-hint{color:var(--gold-light);}
+.qty-control{display:flex;align-items:center;gap:0.6rem;margin-top:1rem;opacity:0;transform:translateY(8px);transition:opacity 0.25s,transform 0.25s;}
+.menu-card.selected .qty-control{opacity:1;transform:translateY(0);}
+.qty-btn{width:30px;height:30px;border-radius:50%;border:1px solid var(--gold);background:transparent;color:var(--gold);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,color 0.2s;line-height:1;}
+.qty-btn:hover{background:var(--gold);color:var(--brown-deep);}
+.qty-num{font-size:1rem;font-weight:700;color:var(--cream);min-width:24px;text-align:center;}
+
+/* ORDER */
+#order{padding:6rem 2rem;background:var(--brown-deep);}
+.order-container{max-width:920px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
+.order-form-box{background:rgba(245,237,214,0.04);border:1px solid rgba(200,146,42,0.18);border-radius:24px;padding:2rem;}
+.order-summary-box{background:rgba(200,146,42,0.06);border:1px solid rgba(200,146,42,0.25);border-radius:24px;padding:2rem;position:sticky;top:6rem;}
+.form-label{display:block;font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;}
+.form-input{width:100%;background:rgba(245,237,214,0.07);border:1px solid rgba(200,146,42,0.25);border-radius:12px;padding:0.9rem 1rem;color:var(--cream);font-size:0.95rem;font-family:'DM Sans',sans-serif;transition:border-color 0.2s,background 0.2s;margin-bottom:1.4rem;}
+.form-input:focus{outline:none;border-color:var(--gold);background:rgba(200,146,42,0.08);}
+.table-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;margin-bottom:1.4rem;}
+.table-btn{aspect-ratio:1;border-radius:12px;border:1.5px solid rgba(200,146,42,0.25);background:rgba(245,237,214,0.04);color:var(--cream);font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:'DM Sans',sans-serif;}
+.table-btn span:first-child{font-size:1.1rem;}
+.table-btn:hover{border-color:var(--gold);background:rgba(200,146,42,0.1);}
+.table-btn.active{border-color:var(--gold);background:rgba(200,146,42,0.2);color:var(--gold-light);box-shadow:0 0 12px rgba(200,146,42,0.25);}
+.payment-opts{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.4rem;}
+.pay-opt{padding:0.9rem;border-radius:14px;border:1.5px solid rgba(200,146,42,0.2);background:rgba(245,237,214,0.04);cursor:pointer;text-align:center;transition:all 0.2s;}
+.pay-opt:hover{border-color:var(--gold);}
+.pay-opt.active{border-color:var(--gold);background:rgba(200,146,42,0.12);}
+.pay-icon{font-size:1.8rem;display:block;margin-bottom:0.3rem;}
+.pay-label{font-size:0.8rem;font-weight:700;color:var(--cream);}
+.pay-desc{font-size:0.7rem;color:var(--text-muted);margin-top:2px;}
+.summary-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--cream);margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid rgba(200,146,42,0.2);}
+.summary-empty{text-align:center;color:var(--text-muted);font-size:0.9rem;padding:1.5rem 0;}
+.summary-item{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;font-size:0.88rem;border-bottom:1px solid rgba(200,146,42,0.08);}
+.summary-item-name{color:var(--cream);flex:1;}
+.summary-item-qty{color:var(--text-muted);margin:0 0.8rem;}
+.summary-item-price{color:var(--gold-light);font-weight:600;}
+.summary-total{display:flex;justify-content:space-between;align-items:center;padding:1rem 0 0;margin-top:0.5rem;}
+.summary-total-label{font-weight:700;font-size:1rem;color:var(--cream);}
+.summary-total-price{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--gold-light);}
+.order-note{background:rgba(245,237,214,0.05);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:0.7rem 1rem;font-size:0.78rem;color:var(--text-muted);margin-top:1rem;line-height:1.6;}
+.btn-submit{width:100%;background:var(--gold);color:var(--brown-deep);border:none;border-radius:14px;padding:1rem;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s,transform 0.15s;margin-top:1.2rem;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:0.5rem;}
+.btn-submit:hover{background:var(--gold-light);transform:translateY(-1px);}
+.btn-submit:disabled{background:rgba(200,146,42,0.3);color:rgba(28,10,0,0.5);cursor:not-allowed;transform:none;}
+
+/* SCAN */
+#scan{padding:6rem 2rem;background:var(--brown-rich);text-align:center;}
+.qr-wrapper{display:inline-block;background:white;border-radius:20px;padding:1.5rem;margin:2rem auto;box-shadow:0 0 60px rgba(200,146,42,0.25);}
+.qr-info{font-size:0.9rem;color:var(--text-muted);max-width:420px;margin:0 auto;line-height:1.7;}
+
+/* FOOTER */
+footer{background:rgba(0,0,0,0.5);border-top:1px solid rgba(200,146,42,0.1);padding:2.5rem;text-align:center;color:var(--text-muted);font-size:0.85rem;}
+footer .foot-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--gold-light);margin-bottom:0.5rem;}
+
+/* FLOAT CART */
+.float-cart{position:fixed;bottom:2rem;right:2rem;background:var(--gold);color:var(--brown-deep);border:none;border-radius:50px;padding:0.9rem 1.5rem;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:0.6rem;box-shadow:0 8px 24px rgba(200,146,42,0.5);z-index:90;transition:background 0.2s;transform:translateY(100px);font-family:'DM Sans',sans-serif;}
+.float-cart.show{transform:translateY(0);animation:bounce-in 0.4s cubic-bezier(0.34,1.56,0.64,1) both;}
+.float-cart:hover{background:var(--gold-light);transform:translateY(-3px);}
+@keyframes bounce-in{from{transform:translateY(100px);}to{transform:translateY(0);}}
+.cart-badge{background:var(--brown-deep);color:var(--gold);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:900;}
+
+/* TOAST */
+.toast{position:fixed;top:5.5rem;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--brown-rich);border:1px solid var(--gold);color:var(--cream);padding:0.8rem 1.5rem;border-radius:50px;font-size:0.9rem;font-weight:500;z-index:200;transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:999;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.modal-overlay.show{opacity:1;pointer-events:all;}
+.modal-box{background:var(--brown-rich);border:1px solid rgba(200,146,42,0.35);border-radius:28px;padding:2.5rem;max-width:480px;width:100%;text-align:center;transform:scale(0.9);transition:transform 0.3s;position:relative;}
+.modal-overlay.show .modal-box{transform:scale(1);}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(245,237,214,0.1);border:none;border-radius:50%;width:36px;height:36px;color:var(--cream);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.modal-close:hover{background:rgba(245,237,214,0.2);}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--cream);margin-bottom:0.4rem;}
+.qris-box{background:white;border-radius:16px;padding:1.5rem;margin:1.5rem auto;display:inline-block;box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+.qris-label{font-size:0.75rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+.qris-merchant{font-family:'Playfair Display',serif;font-size:1rem;color:var(--cream);margin-bottom:0.3rem;}
+.qris-amount{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--gold-light);margin:0.5rem 0;}
+.qris-note{font-size:0.8rem;color:var(--text-muted);line-height:1.5;margin-top:1rem;}
+.success-icon{font-size:4rem;margin-bottom:1rem;}
+.success-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--cream);margin-bottom:0.5rem;}
+.success-msg{font-size:0.95rem;color:var(--text-muted);line-height:1.6;}
+.success-order-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--gold-light);margin:1rem 0;}
+
+/* ===========================
+   ADMIN PANEL
+   =========================== */
+#adminPanel{min-height:100vh;background:#0f0700;font-family:'DM Sans',sans-serif;}
+
+/* Admin Login */
+.admin-login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:radial-gradient(ellipse 70% 70% at 50% 40%,#2a1200 0%,#0f0700 70%);}
+.login-box{background:rgba(245,237,214,0.04);border:1px solid rgba(200,146,42,0.25);border-radius:28px;padding:3rem;max-width:400px;width:100%;text-align:center;}
+.login-logo{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold-light);margin-bottom:0.3rem;}
+.login-logo span{color:var(--cream);font-style:italic;}
+.login-sub{font-size:0.85rem;color:var(--text-muted);margin-bottom:2rem;}
+.login-label{display:block;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;text-align:left;}
+.login-input{width:100%;background:rgba(245,237,214,0.07);border:1px solid rgba(200,146,42,0.25);border-radius:12px;padding:0.85rem 1rem;color:var(--cream);font-size:0.95rem;font-family:'DM Sans',sans-serif;margin-bottom:1.2rem;transition:border-color 0.2s;}
+.login-input:focus{outline:none;border-color:var(--gold);}
+.login-btn{width:100%;background:var(--gold);color:var(--brown-deep);border:none;border-radius:12px;padding:0.9rem;font-size:1rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+.login-btn:hover{background:var(--gold-light);}
+.login-err{color:#ff8a8a;font-size:0.85rem;margin-bottom:1rem;display:none;}
+
+/* Admin Layout */
+.admin-wrap{display:none;min-height:100vh;}
+.admin-sidebar{width:240px;background:rgba(245,237,214,0.03);border-right:1px solid rgba(200,146,42,0.12);position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;z-index:50;}
+.sidebar-logo{padding:1.5rem;border-bottom:1px solid rgba(200,146,42,0.12);}
+.sidebar-logo-text{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--gold-light);}
+.sidebar-logo-text span{color:var(--cream);font-style:italic;}
+.sidebar-logo-sub{font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.sidebar-nav{flex:1;padding:1rem 0;}
+.sidebar-item{display:flex;align-items:center;gap:0.8rem;padding:0.75rem 1.5rem;cursor:pointer;transition:all 0.2s;border-left:3px solid transparent;font-size:0.9rem;font-weight:500;color:rgba(245,237,214,0.6);}
+.sidebar-item:hover{background:rgba(200,146,42,0.07);color:var(--cream);}
+.sidebar-item.active{background:rgba(200,146,42,0.1);border-left-color:var(--gold);color:var(--gold-light);}
+.sidebar-item-icon{font-size:1.1rem;width:20px;text-align:center;}
+.sidebar-badge{margin-left:auto;background:var(--gold);color:var(--brown-deep);border-radius:50px;padding:0.1rem 0.5rem;font-size:0.7rem;font-weight:900;}
+.sidebar-footer{padding:1rem 1.5rem;border-top:1px solid rgba(200,146,42,0.12);}
+.sidebar-logout{display:flex;align-items:center;gap:0.6rem;font-size:0.85rem;color:var(--text-muted);cursor:pointer;transition:color 0.2s;}
+.sidebar-logout:hover{color:#ff8a8a;}
+
+.admin-main{margin-left:240px;min-height:100vh;display:flex;flex-direction:column;}
+.admin-topbar{background:rgba(245,237,214,0.03);border-bottom:1px solid rgba(200,146,42,0.12);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40;backdrop-filter:blur(8px);}
+.topbar-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--cream);}
+.topbar-time{font-size:0.82rem;color:var(--text-muted);}
+.topbar-right{display:flex;align-items:center;gap:1rem;}
+.topbar-notif{position:relative;cursor:pointer;}
+.notif-dot{position:absolute;top:-2px;right:-2px;width:8px;height:8px;background:var(--gold);border-radius:50%;animation:blink 1.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.admin-content{flex:1;padding:2rem;}
+
+/* Page visibility */
+.admin-page{display:none;}
+.admin-page.active{display:block;}
+
+/* Stats row */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-bottom:2rem;}
+.stat-card{background:rgba(245,237,214,0.04);border:1px solid rgba(200,146,42,0.15);border-radius:16px;padding:1.3rem 1.5rem;position:relative;overflow:hidden;}
+.stat-card::after{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;opacity:0.06;}
+.stat-card.gold::after{background:var(--gold);}
+.stat-card.green::after{background:#22c55e;}
+.stat-card.blue::after{background:#3b82f6;}
+.stat-card.red::after{background:#ef4444;}
+.stat-card-label{font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;}
+.stat-card-val{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--cream);}
+.stat-card-sub{font-size:0.78rem;color:var(--text-muted);margin-top:0.3rem;}
+.stat-card.gold .stat-card-val{color:var(--gold-light);}
+.stat-card.green .stat-card-val{color:#86efac;}
+.stat-card.blue .stat-card-val{color:#93c5fd;}
+.stat-card.red .stat-card-val{color:#fca5a5;}
+
+/* Section header */
+.section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;}
+.section-hdr-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--cream);}
+.section-hdr-sub{font-size:0.8rem;color:var(--text-muted);}
+.refresh-btn{background:rgba(200,146,42,0.1);border:1px solid rgba(200,146,42,0.25);color:var(--gold);padding:0.4rem 0.9rem;border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.refresh-btn:hover{background:rgba(200,146,42,0.2);}
+
+/* Order cards grid */
+.orders-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem;}
+.order-card{background:rgba(245,237,214,0.04);border:1px solid rgba(200,146,42,0.15);border-radius:16px;padding:1.3rem;transition:box-shadow 0.2s;animation:slide-in 0.4s ease both;}
+@keyframes slide-in{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.order-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+.order-card.status-new{border-left:4px solid var(--gold);}
+.order-card.status-process{border-left:4px solid #3b82f6;}
+.order-card.status-done{border-left:4px solid #22c55e;}
+.order-card.status-cancel{border-left:4px solid #ef4444;opacity:0.7;}
+.order-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.8rem;}
+.order-num{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gold-light);}
+.order-time{font-size:0.75rem;color:var(--text-muted);}
+.status-badge{font-size:0.7rem;font-weight:700;letter-spacing:0.5px;padding:0.25rem 0.7rem;border-radius:50px;text-transform:uppercase;}
+.status-badge.new{background:rgba(200,146,42,0.2);color:var(--gold-light);border:1px solid rgba(200,146,42,0.4);}
+.status-badge.process{background:rgba(59,130,246,0.2);color:#93c5fd;border:1px solid rgba(59,130,246,0.4);}
+.status-badge.done{background:rgba(34,197,94,0.15);color:#86efac;border:1px solid rgba(34,197,94,0.3);}
+.status-badge.cancel{background:rgba(239,68,68,0.15);color:#fca5a5;border:1px solid rgba(239,68,68,0.3);}
+.order-customer{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;}
+.order-customer-name{font-weight:600;font-size:0.9rem;color:var(--cream);}
+.order-table-tag{font-size:0.72rem;background:rgba(245,237,214,0.08);border:1px solid rgba(200,146,42,0.2);color:var(--text-muted);padding:0.15rem 0.6rem;border-radius:50px;}
+.order-payment-tag{font-size:0.72rem;padding:0.15rem 0.6rem;border-radius:50px;font-weight:600;}
+.order-payment-tag.cash{background:rgba(34,197,94,0.12);color:#86efac;border:1px solid rgba(34,197,94,0.25);}
+.order-payment-tag.qris{background:rgba(139,92,246,0.15);color:#c4b5fd;border:1px solid rgba(139,92,246,0.3);}
+.order-items-list{margin:0.8rem 0;padding:0.7rem;background:rgba(245,237,214,0.03);border-radius:10px;}
+.order-item-row{display:flex;justify-content:space-between;font-size:0.82rem;padding:0.2rem 0;color:rgba(245,237,214,0.8);}
+.order-item-row span:last-child{color:var(--gold-light);font-weight:600;}
+.order-note-text{font-size:0.78rem;color:var(--text-muted);margin-bottom:0.8rem;font-style:italic;}
+.order-total-row{display:flex;justify-content:space-between;align-items:center;padding-top:0.6rem;border-top:1px solid rgba(200,146,42,0.1);}
+.order-total-label{font-size:0.8rem;color:var(--text-muted);}
+.order-total-val{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--gold-light);}
+.order-actions{display:flex;gap:0.5rem;margin-top:1rem;}
+.act-btn{flex:1;padding:0.5rem;border-radius:8px;border:none;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.act-btn.process{background:rgba(59,130,246,0.15);color:#93c5fd;border:1px solid rgba(59,130,246,0.3);}
+.act-btn.process:hover{background:rgba(59,130,246,0.3);}
+.act-btn.done{background:rgba(34,197,94,0.15);color:#86efac;border:1px solid rgba(34,197,94,0.3);}
+.act-btn.done:hover{background:rgba(34,197,94,0.3);}
+.act-btn.cancel{background:rgba(239,68,68,0.1);color:#fca5a5;border:1px solid rgba(239,68,68,0.2);}
+.act-btn.cancel:hover{background:rgba(239,68,68,0.25);}
+.act-btn:disabled{opacity:0.3;cursor:not-allowed;}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--text-muted);}
+.empty-state-icon{font-size:3rem;margin-bottom:0.8rem;}
+.empty-state-text{font-size:0.95rem;}
+
+/* History Table */
+.history-table-wrap{background:rgba(245,237,214,0.03);border:1px solid rgba(200,146,42,0.12);border-radius:16px;overflow:hidden;}
+.history-table{width:100%;border-collapse:collapse;}
+.history-table th{background:rgba(200,146,42,0.08);padding:0.8rem 1rem;text-align:left;font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(200,146,42,0.15);}
+.history-table td{padding:0.85rem 1rem;font-size:0.85rem;color:rgba(245,237,214,0.8);border-bottom:1px solid rgba(245,237,214,0.04);}
+.history-table tr:last-child td{border-bottom:none;}
+.history-table tr:hover td{background:rgba(200,146,42,0.04);}
+.history-table .td-num{font-family:'Playfair Display',serif;font-weight:700;color:var(--gold-light);}
+.history-table .td-total{font-weight:700;color:var(--gold-light);}
+.filter-row{display:flex;gap:0.8rem;margin-bottom:1.2rem;flex-wrap:wrap;align-items:center;}
+.filter-btn{background:rgba(245,237,214,0.05);border:1px solid rgba(200,146,42,0.2);color:var(--text-muted);padding:0.4rem 1rem;border-radius:50px;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.filter-btn:hover,.filter-btn.active{background:rgba(200,146,42,0.15);border-color:var(--gold);color:var(--gold-light);}
+.search-input{background:rgba(245,237,214,0.05);border:1px solid rgba(200,146,42,0.2);border-radius:50px;padding:0.4rem 1rem;color:var(--cream);font-size:0.82rem;font-family:'DM Sans',sans-serif;width:200px;}
+.search-input:focus{outline:none;border-color:var(--gold);}
+.search-input::placeholder{color:var(--text-muted);}
+
+/* Revenue card */
+.revenue-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2rem;}
+.rev-card{background:rgba(245,237,214,0.04);border:1px solid rgba(200,146,42,0.15);border-radius:16px;padding:1.5rem;}
+.rev-card-title{font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.menu-chart{display:flex;flex-direction:column;gap:0.6rem;}
+.chart-bar-row{display:flex;align-items:center;gap:0.8rem;font-size:0.82rem;}
+.chart-bar-label{width:130px;color:rgba(245,237,214,0.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0;}
+.chart-bar-track{flex:1;background:rgba(245,237,214,0.06);border-radius:50px;height:8px;overflow:hidden;}
+.chart-bar-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transition:width 0.6s ease;}
+.chart-bar-val{width:35px;text-align:right;font-weight:700;color:var(--gold-light);}
+.payment-donut{display:flex;gap:1.5rem;align-items:center;margin-top:0.5rem;}
+.donut-legend{display:flex;flex-direction:column;gap:0.6rem;}
+.donut-item{display:flex;align-items:center;gap:0.6rem;font-size:0.85rem;}
+.donut-dot{width:10px;height:10px;border-radius:50%;}
+
+/* New order notification ping */
+.ping-wrap{display:flex;align-items:center;gap:0.5rem;background:rgba(200,146,42,0.1);border:1px solid rgba(200,146,42,0.3);border-radius:50px;padding:0.4rem 1rem;font-size:0.8rem;color:var(--gold-light);}
+.ping{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:blink 1s infinite;}
+
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#0f0700;}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+
+@media(max-width:1024px){.stats-row{grid-template-columns:repeat(2,1fr);}  .revenue-row{grid-template-columns:1fr;}}
+@media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}.order-container{grid-template-columns:1fr;}.hero-stats{gap:1.5rem;}.admin-sidebar{width:200px;}.admin-main{margin-left:200px;}.stats-row{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.admin-sidebar{display:none;}.admin-main{margin-left:0;}}
+@media(max-width:500px){.menu-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     CUSTOMER SITE
+     ============================================================ -->
+<div id="customerSite">
+<nav>
+  <div class="nav-logo">Kirana <span>Kuphi</span></div>
+  <div class="nav-links">
+    <a href="#hero">Beranda</a>
+    <a href="#menu">Menu</a>
+    <a href="#order">Pesan</a>
+    <a href="#scan">QR Code</a>
+    <a href="#order" class="nav-cta">Pesan Sekarang ☕</a>
+  </div>
+  <button class="nav-admin-btn" onclick="openAdminLogin()">⚙️ Admin</button>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-circle"></div><div class="hero-circle"></div><div class="hero-circle"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">☕ Kedai Kopi Asli Indonesia</div>
+    <h1 class="hero-title">Rasa yang Tak<br>Pernah <em>Terlupa</em></h1>
+    <p class="hero-sub">Dari biji pilihan Nusantara, kami hadirkan secangkir kopi yang menceritakan kekayaan rasa tanah air.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">Lihat Menu ↓</a>
+      <a href="#scan" class="btn-outline">📱 Scan QR</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Menu Pilihan</div></div>
+      <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Meja Nyaman</div></div>
+      <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Cara Bayar</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="menu-header">
+    <div class="section-label">✦ Pilihan Kami</div>
+    <h2 class="section-title">Menu <em>Spesial</em></h2>
+    <p style="color:var(--text-muted);margin-top:0.8rem;font-size:0.95rem;">Klik kartu menu untuk menambahkan ke pesanan</p>
+  </div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<section id="order">
+  <div style="text-align:center;margin-bottom:3rem;">
+    <div class="section-label">✦ Pesan Sekarang</div>
+    <h2 class="section-title">Formulir <em>Pesanan</em></h2>
+  </div>
+  <div class="order-container">
+    <div class="order-form-box">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);margin-bottom:1.5rem;">📋 Detail Pesanan</h3>
+      <label class="form-label">Nama Pemesan</label>
+      <input class="form-input" type="text" id="custName" placeholder="Masukkan nama Anda..."/>
+      <label class="form-label">Pilih Meja</label>
+      <div class="table-grid" id="tableGrid"></div>
+      <label class="form-label">Metode Pembayaran</label>
+      <div class="payment-opts">
+        <div class="pay-opt active" data-pay="cash" onclick="selectPay('cash')"><span class="pay-icon">💵</span><div class="pay-label">Tunai</div><div class="pay-desc">Bayar di kasir</div></div>
+        <div class="pay-opt" data-pay="qris" onclick="selectPay('qris')"><span class="pay-icon">📲</span><div class="pay-label">QRIS</div><div class="pay-desc">Scan & bayar</div></div>
+      </div>
+      <label class="form-label">Catatan (opsional)</label>
+      <textarea class="form-input" id="orderNote" rows="3" placeholder="Tambahan permintaan khusus..."></textarea>
+      <button class="btn-submit" id="submitBtn" onclick="submitOrder()" disabled>🛒 Konfirmasi Pesanan</button>
+    </div>
+    <div class="order-summary-box">
+      <div class="summary-title">🧾 Ringkasan Pesanan</div>
+      <div id="summaryItems"><div class="summary-empty">Belum ada item.<br>Pilih menu di atas! ☕</div></div>
+      <div id="summaryTotalRow" style="display:none;">
+        <div class="summary-total"><span class="summary-total-label">Total</span><span class="summary-total-price" id="summaryTotal">Rp 0</span></div>
+        <div class="order-note" id="tableNote"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scan">
+  <div class="section-label">✦ Akses Mudah</div>
+  <h2 class="section-title">Scan & <em>Pesan</em></h2>
+  <p class="qr-info" style="margin-top:1rem;">Scan QR code ini dengan kamera HP Anda untuk langsung mengakses menu dan memesan.</p>
+  <div class="qr-wrapper"><div id="qrCode"></div></div>
+  <p class="qr-info">🔗 <strong style="color:var(--gold-light);">kiranakuphi.id</strong></p>
+</section>
+
+<footer>
+  <div class="foot-logo">Kirana Kuphi ☕</div>
+  <p>Kedai Kopi Asli Indonesia &nbsp;|&nbsp; Pesan Online, Bayar Mudah</p>
+  <p style="margin-top:0.5rem;font-size:0.75rem;">© 2025 Kirana Kuphi. Dibuat dengan ❤️ untuk pecinta kopi Nusantara.</p>
+</footer>
+
+<button class="float-cart" id="floatCart" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
+  🛒 Lihat Pesanan <span class="cart-badge" id="cartBadge">0</span>
+</button>
+<div class="toast" id="toast"></div>
+
+<!-- QRIS MODAL -->
+<div class="modal-overlay" id="qrisModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('qrisModal')">✕</button>
+    <div class="qris-label">Bayar Sekarang</div>
+    <div class="modal-title">Scan QRIS</div>
+    <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:0.5rem;">Scan QR di bawah dengan aplikasi dompet digital Anda</p>
+    <div class="qris-box"><div id="qrisCode"></div></div>
+    <div class="qris-merchant">🏪 Kirana Kuphi</div>
+    <div class="qris-amount" id="qrisAmount">Rp 0</div>
+    <div class="qris-note">Setelah pembayaran berhasil, tunjukkan bukti transfer ke kasir. Pesanan akan segera diproses! ☕</div>
+    <button class="btn-submit" style="margin-top:1.5rem" onclick="confirmPayment()">✅ Saya Sudah Bayar</button>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal-box">
+    <div class="success-icon">🎉</div>
+    <div class="success-title">Pesanan Masuk!</div>
+    <div class="success-order-num" id="orderNumDisplay">#001</div>
+    <div class="success-msg" id="successMsg"></div>
+    <button class="btn-submit" style="margin-top:1.5rem" onclick="closeModal('successModal');resetAll()">✨ Pesan Lagi</button>
+  </div>
+</div>
+</div><!-- end #customerSite -->
+
+
+<!-- ============================================================
+     ADMIN PANEL
+     ============================================================ -->
+<div id="adminPanel">
+
+  <!-- LOGIN -->
+  <div id="adminLogin" class="admin-login">
+    <div class="login-box">
+      <div class="login-logo">Kirana <span>Kuphi</span></div>
+      <div class="login-sub">🔐 Admin Dashboard</div>
+      <div class="login-err" id="loginErr">Username atau password salah!</div>
+      <label class="login-label">Username</label>
+      <input class="login-input" type="text" id="loginUser" placeholder="admin" onkeydown="if(event.key==='Enter')doLogin()"/>
+      <label class="login-label">Password</label>
+      <input class="login-input" type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
+      <button class="login-btn" onclick="doLogin()">Masuk ke Dashboard →</button>
+      <p style="margin-top:1.2rem;font-size:0.75rem;color:var(--text-muted);">Default: admin / kirana2025</p>
+      <p style="margin-top:0.8rem;"><a onclick="closeAdminPanel()" style="color:var(--gold);font-size:0.8rem;cursor:pointer;text-decoration:underline;">← Kembali ke Website</a></p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="admin-wrap" id="adminWrap">
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-text">Kirana <span>Kuphi</span></div>
+        <div class="sidebar-logo-sub">Admin Dashboard</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-item active" onclick="showAdminPage('overview')" id="nav-overview">
+          <span class="sidebar-item-icon">📊</span> Overview
+        </div>
+        <div class="sidebar-item" onclick="showAdminPage('live')" id="nav-live">
+          <span class="sidebar-item-icon">🔴</span> Pesanan Masuk
+          <span class="sidebar-badge" id="newOrderBadge">0</span>
+        </div>
+        <div class="sidebar-item" onclick="showAdminPage('history')" id="nav-history">
+          <span class="sidebar-item-icon">📋</span> Riwayat Pesanan
+        </div>
+        <div class="sidebar-item" onclick="showAdminPage('revenue')" id="nav-revenue">
+          <span class="sidebar-item-icon">💰</span> Pendapatan
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-logout" onclick="doLogout()">
+          <span>🚪</span> Keluar
+        </div>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <div>
+          <div class="topbar-title" id="pageTitle">Overview</div>
+          <div class="topbar-time" id="topbarTime"></div>
+        </div>
+        <div class="topbar-right">
+          <div id="newOrderPing" style="display:none;" class="ping-wrap"><div class="ping"></div> Pesanan baru masuk!</div>
+          <div class="topbar-notif" onclick="showAdminPage('live')">🔔<div class="notif-dot" id="notifDot" style="display:none;"></div></div>
+          <a onclick="closeAdminPanel()" style="font-size:0.8rem;color:var(--text-muted);cursor:pointer;">← Website</a>
+        </div>
+      </div>
+
+      <div class="admin-content">
+
+        <!-- OVERVIEW PAGE -->
+        <div class="admin-page active" id="page-overview">
+          <div class="stats-row">
+            <div class="stat-card gold"><div class="stat-card-label">Total Pesanan Hari Ini</div><div class="stat-card-val" id="stat-total">0</div><div class="stat-card-sub">sejak buka</div></div>
+            <div class="stat-card green"><div class="stat-card-label">Pesanan Selesai</div><div class="stat-card-val" id="stat-done">0</div><div class="stat-card-sub">telah diantarkan</div></div>
+            <div class="stat-card blue"><div class="stat-card-label">Sedang Diproses</div><div class="stat-card-val" id="stat-process">0</div><div class="stat-card-sub">dalam antrian</div></div>
+            <div class="stat-card red"><div class="stat-card-label">Pendapatan Hari Ini</div><div class="stat-card-val" id="stat-revenue">0</div><div class="stat-card-sub">dari pesanan selesai</div></div>
+          </div>
+          <div class="section-hdr"><div><div class="section-hdr-title">Pesanan Aktif Terbaru</div><div class="section-hdr-sub">Pesanan yang masuk dan belum selesai</div></div>
+            <button class="refresh-btn" onclick="renderAdminOverview()">↻ Refresh</button>
+          </div>
+          <div class="orders-grid" id="overviewOrders"></div>
+        </div>
+
+        <!-- LIVE ORDERS PAGE -->
+        <div class="admin-page" id="page-live">
+          <div class="section-hdr">
+            <div><div class="section-hdr-title">🔴 Pesanan Masuk Real-Time</div><div class="section-hdr-sub">Kelola status pesanan pelanggan</div></div>
+            <div style="display:flex;gap:0.6rem;">
+              <button class="filter-btn active" id="flt-all" onclick="filterLive('all')">Semua</button>
+              <button class="filter-btn" id="flt-new" onclick="filterLive('new')">Baru</button>
+              <button class="filter-btn" id="flt-process" onclick="filterLive('process')">Diproses</button>
+              <button class="refresh-btn" onclick="renderLiveOrders()">↻ Refresh</button>
+            </div>
+          </div>
+          <div class="orders-grid" id="liveOrdersGrid"></div>
+        </div>
+
+        <!-- HISTORY PAGE -->
+        <div class="admin-page" id="page-history">
+          <div class="section-hdr">
+            <div><div class="section-hdr-title">📋 Riwayat Semua Pesanan</div><div class="section-hdr-sub">Semua transaksi tercatat</div></div>
+          </div>
+          <div class="filter-row">
+            <button class="filter-btn active" id="hflt-all" onclick="filterHistory('all')">Semua</button>
+            <button class="filter-btn" id="hflt-done" onclick="filterHistory('done')">Selesai</button>
+            <button class="filter-btn" id="hflt-cancel" onclick="filterHistory('cancel')">Dibatalkan</button>
+            <button class="filter-btn" id="hflt-cash" onclick="filterHistory('cash')">Tunai</button>
+            <button class="filter-btn" id="hflt-qris" onclick="filterHistory('qris')">QRIS</button>
+            <input class="search-input" type="text" id="historySearch" placeholder="🔍 Cari nama..." oninput="renderHistory()"/>
+          </div>
+          <div class="history-table-wrap">
+            <table class="history-table">
+              <thead><tr>
+                <th>No. Pesanan</th><th>Waktu</th><th>Pelanggan</th><th>Meja</th><th>Menu</th><th>Total</th><th>Bayar</th><th>Status</th>
+              </tr></thead>
+              <tbody id="historyBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- REVENUE PAGE -->
+        <div class="admin-page" id="page-revenue">
+          <div class="stats-row">
+            <div class="stat-card gold"><div class="stat-card-label">Total Pendapatan</div><div class="stat-card-val" id="rev-total">Rp 0</div><div class="stat-card-sub">semua waktu</div></div>
+            <div class="stat-card green"><div class="stat-card-label">Rata-rata per Pesanan</div><div class="stat-card-val" id="rev-avg">Rp 0</div><div class="stat-card-sub">dari pesanan selesai</div></div>
+            <div class="stat-card blue"><div class="stat-card-label">Pesanan Selesai</div><div class="stat-card-val" id="rev-count">0</div><div class="stat-card-sub">total transaksi</div></div>
+            <div class="stat-card red"><div class="stat-card-label">Menu Terlaris</div><div class="stat-card-val" id="rev-top" style="font-size:1rem;">-</div><div class="stat-card-sub">paling sering dipesan</div></div>
+          </div>
+          <div class="revenue-row">
+            <div class="rev-card">
+              <div class="rev-card-title">📈 Menu Terlaris</div>
+              <div class="menu-chart" id="menuChart"></div>
+            </div>
+            <div class="rev-card">
+              <div class="rev-card-title">💳 Metode Pembayaran</div>
+              <div id="paymentStats" style="margin-top:0.5rem;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end admin-content -->
+    </div><!-- end admin-main -->
+  </div><!-- end admin-wrap -->
+</div><!-- end adminPanel -->
+
+
+<script>
+// ===================================================
+// DATA
+// ===================================================
+const menuItems = [
+  {id:1,name:'Sanger Panas',desc:'Kopi khas Aceh dengan susu kental manis, disajikan panas.',price:17000,badge:'hot',badgeText:'🔥 Panas',img:'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=500&q=80'},
+  {id:2,name:'Sanger Dingin',desc:'Paduan kopi Aceh dan susu kental manis di atas es batu.',price:20000,badge:'cold',badgeText:'❄️ Dingin',img:'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80'},
+  {id:3,name:'Teh Manis Panas',desc:'Teh pilihan diseduh dengan air panas dan gula aren lokal.',price:5000,badge:'hot',badgeText:'🔥 Panas',img:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=80'},
+  {id:4,name:'Teh Manis Dingin',desc:'Teh manis yang disajikan dingin dengan es serut.',price:7000,badge:'cold',badgeText:'❄️ Dingin',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80'},
+  {id:5,name:'Americano Panas',desc:'Espresso diencerkan dengan air panas. Rasa kopi kuat dan bersih.',price:17000,badge:'hot',badgeText:'🔥 Panas',img:'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&q=80'},
+  {id:6,name:'Americano Dingin',desc:'Americano disajikan dingin dengan es, segar dan penuh rasa.',price:20000,badge:'cold',badgeText:'❄️ Dingin',img:'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&q=80'},
+  {id:7,name:'Kopi Wine Panas',desc:'Arabika wine fermentation — fruity, kompleks, disajikan hangat.',price:25000,badge:'special',badgeText:'✨ Spesial',img:'https://images.unsplash.com/photo-1497515114629-f71d768fd07c?w=500&q=80'},
+  {id:8,name:'Kopi Wine Dingin',desc:'Kopi wine fermentation arabika disajikan dingin. Segar dan memikat.',price:25000,badge:'special',badgeText:'✨ Spesial',img:'https://images.unsplash.com/photo-1509785307050-d4066910ec1e?w=500&q=80'},
+];
+
+// In-memory order store (persists during session)
+let allOrders = [];
+let orderCounter = 100 + Math.floor(Math.random()*50);
+
+// Seed some demo orders so admin isn't empty
+function seedDemoOrders(){
+  const names=['Budi','Siti','Ahmad','Rina','Dani','Putri','Hasan','Layla'];
+  const times=[75,60,45,30,20,10,5,2];
+  const statuses=['done','done','done','done','process','new','new','new'];
+  const pays=['cash','qris','cash','cash','qris','cash','qris','cash'];
+  times.forEach((minsAgo,i)=>{
+    const t=new Date(Date.now()-minsAgo*60000);
+    const items=[{id:(i%8)+1,qty:1+(i%2)},{id:((i+3)%8)+1,qty:1}];
+    allOrders.push({
+      id:'#'+String(orderCounter+i).padStart(3,'0'),
+      customer:names[i],
+      table:((i%8)+1),
+      payment:pays[i],
+      items,
+      note: i===2?'Kurangi gula':'',
+      status:statuses[i],
+      total:items.reduce((s,it)=>s+menuItems[it.id-1].price*it.qty,0),
+      time:t
+    });
+  });
+  orderCounter+=times.length;
+}
+seedDemoOrders();
+
+// ===================================================
+// CUSTOMER SITE
+// ===================================================
+const cart={};
+let selectedTable=null;
+let selectedPay='cash';
+
+function buildMenu(){
+  const grid=document.getElementById('menuGrid');
+  menuItems.forEach(item=>{
+    const div=document.createElement('div');
+    div.className='menu-card';div.id='card-'+item.id;
+    div.innerHTML=`
+      <div class="menu-img-wrap"><img src="${item.img}" alt="${item.name}" loading="lazy"/>
+        <div class="menu-img-overlay"></div>
+        <span class="menu-badge-img ${item.badge}">${item.badgeText}</span>
+      </div>
+      <div class="menu-body">
+        <div class="menu-name">${item.name}</div>
+        <div class="menu-desc">${item.desc}</div>
+        <div class="menu-bottom">
+          <div class="menu-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+          <div class="add-hint" id="hint-${item.id}">+ Tambah</div>
+        </div>
+        <div class="qty-control" id="qty-${item.id}">
+          <button class="qty-btn" onclick="event.stopPropagation();changeQty(${item.id},-1)">−</button>
+          <span class="qty-num" id="qnum-${item.id}">1</span>
+          <button class="qty-btn" onclick="event.stopPropagation();changeQty(${item.id},1)">+</button>
+        </div>
+      </div>`;
+    div.addEventListener('click',()=>toggleItem(item.id));
+    grid.appendChild(div);
+  });
+}
+
+function toggleItem(id){
+  const card=document.getElementById('card-'+id);
+  const hint=document.getElementById('hint-'+id);
+  if(cart[id]){delete cart[id];card.classList.remove('selected');hint.textContent='+ Tambah';showToast('❌ '+menuItems[id-1].name+' dihapus');}
+  else{cart[id]=1;card.classList.add('selected');hint.textContent='✓ Dipilih';showToast('✅ '+menuItems[id-1].name+' ditambahkan');}
+  updateSummary();updateFloatCart();
+}
+
+function changeQty(id,delta){
+  if(!cart[id])return;
+  cart[id]=Math.max(1,(cart[id]||1)+delta);
+  document.getElementById('qnum-'+id).textContent=cart[id];
+  updateSummary();updateFloatCart();
+}
+
+function buildTables(){
+  const grid=document.getElementById('tableGrid');
+  for(let i=1;i<=8;i++){
+    const btn=document.createElement('button');
+    btn.className='table-btn';btn.id='table-'+i;
+    btn.innerHTML=`<span>🪑</span><span>Meja ${i}</span>`;
+    btn.onclick=()=>selectTable(i);
+    grid.appendChild(btn);
+  }
+}
+
+function selectTable(num){
+  if(selectedTable)document.getElementById('table-'+selectedTable).classList.remove('active');
+  selectedTable=num;document.getElementById('table-'+num).classList.add('active');
+  checkSubmit();updateSummary();
+}
+
+function selectPay(method){
+  selectedPay=method;
+  document.querySelectorAll('.pay-opt').forEach(el=>el.classList.remove('active'));
+  document.querySelector(`[data-pay="${method}"]`).classList.add('active');
+}
+
+function updateSummary(){
+  const container=document.getElementById('summaryItems');
+  const totalRow=document.getElementById('summaryTotalRow');
+  const keys=Object.keys(cart);
+  if(keys.length===0){container.innerHTML='<div class="summary-empty">Belum ada item.<br>Pilih menu di atas! ☕</div>';totalRow.style.display='none';return;}
+  let html='',total=0;
+  keys.forEach(id=>{
+    const item=menuItems[id-1];const qty=cart[id];const sub=item.price*qty;total+=sub;
+    html+=`<div class="summary-item"><span class="summary-item-name">${item.name}</span><span class="summary-item-qty">x${qty}</span><span class="summary-item-price">Rp ${sub.toLocaleString('id-ID')}</span></div>`;
+  });
+  container.innerHTML=html;
+  document.getElementById('summaryTotal').textContent='Rp '+total.toLocaleString('id-ID');
+  totalRow.style.display='block';
+  const noteEl=document.getElementById('tableNote');
+  noteEl.textContent=selectedTable?`📍 Meja ${selectedTable} · ${selectedPay==='cash'?'💵 Bayar Tunai di Kasir':'📲 Bayar via QRIS'}`:'⚠️ Pilih nomor meja terlebih dahulu';
+  checkSubmit();
+}
+
+function getTotal(){return Object.keys(cart).reduce((s,id)=>s+menuItems[id-1].price*cart[id],0);}
+
+function checkSubmit(){
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=!(Object.keys(cart).length>0&&selectedTable&&document.getElementById('custName').value.trim().length>0);
+}
+document.getElementById('custName').addEventListener('input',checkSubmit);
+
+function updateFloatCart(){
+  const total=Object.keys(cart).reduce((s,id)=>s+cart[id],0);
+  const fc=document.getElementById('floatCart');
+  document.getElementById('cartBadge').textContent=total;
+  if(total>0)fc.classList.add('show');else fc.classList.remove('show');
+}
+
+function submitOrder(){if(selectedPay==='qris')showQRIS();else finishOrder();}
+
+function showQRIS(){
+  document.getElementById('qrisAmount').textContent='Rp '+getTotal().toLocaleString('id-ID');
+  const qc=document.getElementById('qrisCode');qc.innerHTML='';
+  new QRCode(qc,{text:'00020101021226610016ID.CO.BNI.WWW02191882765340019190303UBE51440014ID.CO.QRIS.WWW0215ID20231234567890303UBE5204581253033605802ID5913KIRANA KUPHI6013BANDA ACEH61052350162070703A016304CAFE',width:200,height:200,colorDark:'#1C0A00',colorLight:'#FFFFFF',correctLevel:QRCode.CorrectLevel.M});
+  document.getElementById('qrisModal').classList.add('show');
+}
+
+function confirmPayment(){closeModal('qrisModal');finishOrder();}
+
+function finishOrder(){
+  orderCounter++;
+  const num='#'+String(orderCounter).padStart(3,'0');
+  const name=document.getElementById('custName').value;
+  const note=document.getElementById('orderNote').value;
+  const items=Object.keys(cart).map(id=>({id:parseInt(id),qty:cart[id]}));
+  const total=getTotal();
+  // Save to allOrders for admin
+  allOrders.unshift({id:num,customer:name,table:selectedTable,payment:selectedPay,items,note,status:'new',total,time:new Date()});
+  updateAdminBadge();
+  document.getElementById('orderNumDisplay').textContent=num;
+  document.getElementById('successMsg').innerHTML=`Halo <strong>${name}</strong>! Pesanan Anda untuk <strong>Meja ${selectedTable}</strong> sedang diproses. ${selectedPay==='cash'?'Silakan bayar tunai di kasir':'Pembayaran QRIS terkonfirmasi'}. Terima kasih! ☕`;
+  document.getElementById('successModal').classList.add('show');
+}
+
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+
+function resetAll(){
+  Object.keys(cart).forEach(id=>{delete cart[id];document.getElementById('card-'+id).classList.remove('selected');document.getElementById('hint-'+id).textContent='+ Tambah';});
+  if(selectedTable){document.getElementById('table-'+selectedTable).classList.remove('active');selectedTable=null;}
+  document.getElementById('custName').value='';document.getElementById('orderNote').value='';
+  updateSummary();updateFloatCart();document.getElementById('submitBtn').disabled=true;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._timer);t._timer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+function buildSiteQR(){
+  new QRCode(document.getElementById('qrCode'),{text:'https://kiranakuphi.id',width:200,height:200,colorDark:'#1C0A00',colorLight:'#FFFFFF',correctLevel:QRCode.CorrectLevel.H});
+}
+
+// ===================================================
+// ADMIN PANEL
+// ===================================================
+function openAdminLogin(){
+  document.getElementById('customerSite').style.display='none';
+  document.getElementById('adminPanel').style.display='block';
+  document.getElementById('adminLogin').style.display='flex';
+  document.getElementById('adminWrap').style.display='none';
+}
+
+function closeAdminPanel(){
+  document.getElementById('adminPanel').style.display='none';
+  document.getElementById('customerSite').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function doLogin(){
+  const u=document.getElementById('loginUser').value.trim();
+  const p=document.getElementById('loginPass').value;
+  const err=document.getElementById('loginErr');
+  if(u==='admin'&&p==='kirana2025'){
+    err.style.display='none';
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('adminWrap').style.display='flex';
+    renderAdminOverview();updateAdminBadge();startClock();
+  } else {
+    err.style.display='block';
+    document.getElementById('loginUser').style.borderColor='#ef4444';
+    setTimeout(()=>document.getElementById('loginUser').style.borderColor='',2000);
+  }
+}
+
+function doLogout(){
+  document.getElementById('adminWrap').style.display='none';
+  document.getElementById('adminLogin').style.display='flex';
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+}
+
+function showAdminPage(page){
+  document.querySelectorAll('.admin-page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(s=>s.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.getElementById('nav-'+page).classList.add('active');
+  const titles={overview:'📊 Overview',live:'🔴 Pesanan Masuk',history:'📋 Riwayat Pesanan',revenue:'💰 Laporan Pendapatan'};
+  document.getElementById('pageTitle').textContent=titles[page];
+  if(page==='overview')renderAdminOverview();
+  if(page==='live'){renderLiveOrders();clearPing();}
+  if(page==='history')renderHistory();
+  if(page==='revenue')renderRevenue();
+}
+
+function updateAdminBadge(){
+  const newCount=allOrders.filter(o=>o.status==='new').length;
+  document.getElementById('newOrderBadge').textContent=newCount;
+  const dot=document.getElementById('notifDot');
+  const ping=document.getElementById('newOrderPing');
+  if(newCount>0){dot.style.display='block';ping.style.display='flex';}
+  else{dot.style.display='none';ping.style.display='none';}
+}
+
+function clearPing(){
+  document.getElementById('newOrderPing').style.display='none';
+}
+
+function startClock(){
+  function tick(){
+    const now=new Date();
+    document.getElementById('topbarTime').textContent=now.toLocaleDateString('id-ID',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' · '+now.toLocaleTimeString('id-ID');
+  }
+  tick();setInterval(tick,1000);
+}
+
+// Render helpers
+function formatTime(d){
+  const diff=Math.floor((Date.now()-d.getTime())/60000);
+  if(diff<1)return'Baru saja';if(diff<60)return diff+' menit lalu';
+  if(diff<1440)return Math.floor(diff/60)+' jam lalu';
+  return d.toLocaleDateString('id-ID');
+}
+
+function getItemsText(items){
+  return items.map(i=>`${menuItems[i.id-1].name} x${i.qty}`).join(', ');
+}
+
+function statusLabel(s){
+  const m={new:'Baru',process:'Diproses',done:'Selesai',cancel:'Dibatal'};return m[s]||s;
+}
+
+function orderCardHTML(o,showActions=true){
+  const itemsHtml=o.items.map(it=>`<div class="order-item-row"><span>${menuItems[it.id-1].name} x${it.qty}</span><span>Rp ${(menuItems[it.id-1].price*it.qty).toLocaleString('id-ID')}</span></div>`).join('');
+  const canProcess=o.status==='new';
+  const canDone=o.status==='new'||o.status==='process';
+  const canCancel=o.status==='new'||o.status==='process';
+  const actionsHtml=showActions&&o.status!=='done'&&o.status!=='cancel'?`
+    <div class="order-actions">
+      ${canProcess?`<button class="act-btn process" onclick="updateOrderStatus('${o.id}','process')" ${!canProcess?'disabled':''}>⚙️ Proses</button>`:''}
+      <button class="act-btn done" onclick="updateOrderStatus('${o.id}','done')" ${!canDone?'disabled':''}>✅ Selesai</button>
+      <button class="act-btn cancel" onclick="updateOrderStatus('${o.id}','cancel')" ${!canCancel?'disabled':''}>✕ Batal</button>
+    </div>`:'';
+  return `<div class="order-card status-${o.status}" id="ocard-${o.id.replace('#','')}">
+    <div class="order-card-top">
+      <div><div class="order-num">${o.id}</div><div class="order-time">${formatTime(o.time)}</div></div>
+      <span class="status-badge ${o.status}">${statusLabel(o.status)}</span>
+    </div>
+    <div class="order-customer">
+      <span class="order-customer-name">👤 ${o.customer}</span>
+      <span class="order-table-tag">Meja ${o.table}</span>
+      <span class="order-payment-tag ${o.payment}">${o.payment==='cash'?'💵 Tunai':'📲 QRIS'}</span>
+    </div>
+    ${o.note?`<div class="order-note-text">📝 "${o.note}"</div>`:''}
+    <div class="order-items-list">${itemsHtml}</div>
+    <div class="order-total-row"><span class="order-total-label">Total</span><span class="order-total-val">Rp ${o.total.toLocaleString('id-ID')}</span></div>
+    ${actionsHtml}
+  </div>`;
+}
+
+function updateOrderStatus(id,status){
+  const o=allOrders.find(x=>x.id===id);
+  if(o){o.status=status;}
+  updateAdminBadge();
+  // re-render current page
+  const activePage=document.querySelector('.admin-page.active').id;
+  if(activePage==='page-overview')renderAdminOverview();
+  if(activePage==='page-live')renderLiveOrders();
+  if(activePage==='page-history')renderHistory();
+  if(activePage==='page-revenue')renderRevenue();
+}
+
+function renderAdminOverview(){
+  // Stats
+  const total=allOrders.length;
+  const done=allOrders.filter(o=>o.status==='done').length;
+  const process=allOrders.filter(o=>o.status==='process').length;
+  const revenue=allOrders.filter(o=>o.status==='done').reduce((s,o)=>s+o.total,0);
+  document.getElementById('stat-total').textContent=total;
+  document.getElementById('stat-done').textContent=done;
+  document.getElementById('stat-process').textContent=process;
+  document.getElementById('stat-revenue').textContent='Rp '+revenue.toLocaleString('id-ID');
+  // Active orders
+  const active=allOrders.filter(o=>o.status==='new'||o.status==='process').slice(0,6);
+  const grid=document.getElementById('overviewOrders');
+  if(active.length===0){grid.innerHTML='<div class="empty-state"><div class="empty-state-icon">☕</div><div class="empty-state-text">Tidak ada pesanan aktif saat ini.<br>Semua sudah beres!</div></div>';return;}
+  grid.innerHTML=active.map(o=>orderCardHTML(o)).join('');
+}
+
+let liveFilter='all';
+function filterLive(f){
+  liveFilter=f;
+  document.querySelectorAll('[id^="flt-"]').forEach(el=>el.classList.remove('active'));
+  document.getElementById('flt-'+f).classList.add('active');
+  renderLiveOrders();
+}
+
+function renderLiveOrders(){
+  let orders=allOrders.filter(o=>o.status==='new'||o.status==='process');
+  if(liveFilter==='new')orders=orders.filter(o=>o.status==='new');
+  if(liveFilter==='process')orders=orders.filter(o=>o.status==='process');
+  const grid=document.getElementById('liveOrdersGrid');
+  if(orders.length===0){grid.innerHTML='<div class="empty-state"><div class="empty-state-icon">🎉</div><div class="empty-state-text">Tidak ada pesanan aktif.<br>'+( liveFilter==='all'?'Semua sudah selesai!':'Tidak ada pesanan dengan status ini.')+'</div></div>';return;}
+  grid.innerHTML=orders.map(o=>orderCardHTML(o)).join('');
+}
+
+let historyFilter='all';
+function filterHistory(f){
+  historyFilter=f;
+  document.querySelectorAll('[id^="hflt-"]').forEach(el=>el.classList.remove('active'));
+  document.getElementById('hflt-'+f).classList.add('active');
+  renderHistory();
+}
+
+function renderHistory(){
+  const search=document.getElementById('historySearch').value.toLowerCase();
+  let orders=[...allOrders];
+  if(historyFilter==='done')orders=orders.filter(o=>o.status==='done');
+  else if(historyFilter==='cancel')orders=orders.filter(o=>o.status==='cancel');
+  else if(historyFilter==='cash')orders=orders.filter(o=>o.payment==='cash');
+  else if(historyFilter==='qris')orders=orders.filter(o=>o.payment==='qris');
+  if(search)orders=orders.filter(o=>o.customer.toLowerCase().includes(search)||o.id.includes(search));
+  const tbody=document.getElementById('historyBody');
+  if(orders.length===0){tbody.innerHTML='<tr><td colspan="8" style="text-align:center;color:var(--text-muted);padding:2rem;">Tidak ada data ditemukan.</td></tr>';return;}
+  tbody.innerHTML=orders.map(o=>`<tr>
+    <td class="td-num">${o.id}</td>
+    <td>${formatTime(o.time)}</td>
+    <td>${o.customer}</td>
+    <td>Meja ${o.table}</td>
+    <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${getItemsText(o.items)}">${getItemsText(o.items)}</td>
+    <td class="td-total">Rp ${o.total.toLocaleString('id-ID')}</td>
+    <td><span class="order-payment-tag ${o.payment}">${o.payment==='cash'?'💵 Tunai':'📲 QRIS'}</span></td>
+    <td><span class="status-badge ${o.status}">${statusLabel(o.status)}</span></td>
+  </tr>`).join('');
+}
+
+function renderRevenue(){
+  const done=allOrders.filter(o=>o.status==='done');
+  const total=done.reduce((s,o)=>s+o.total,0);
+  const avg=done.length>0?Math.round(total/done.length):0;
+  document.getElementById('rev-total').textContent='Rp '+total.toLocaleString('id-ID');
+  document.getElementById('rev-avg').textContent='Rp '+avg.toLocaleString('id-ID');
+  document.getElementById('rev-count').textContent=done.length;
+  // Count menu items
+  const menuCount={};
+  done.forEach(o=>o.items.forEach(it=>{menuCount[it.id]=(menuCount[it.id]||0)+it.qty;}));
+  const sorted=Object.entries(menuCount).sort((a,b)=>b[1]-a[1]);
+  document.getElementById('rev-top').textContent=sorted.length>0?menuItems[sorted[0][0]-1].name:'-';
+  // Chart
+  const maxVal=sorted.length>0?sorted[0][1]:1;
+  const chart=document.getElementById('menuChart');
+  chart.innerHTML=sorted.length===0?'<div style="color:var(--text-muted);font-size:0.85rem;padding:1rem 0;">Belum ada data penjualan.</div>':
+    sorted.map(([id,cnt])=>`<div class="chart-bar-row">
+      <div class="chart-bar-label">${menuItems[id-1].name}</div>
+      <div class="chart-bar-track"><div class="chart-bar-fill" style="width:${Math.round(cnt/maxVal*100)}%"></div></div>
+      <div class="chart-bar-val">${cnt}</div>
+    </div>`).join('');
+  // Payment breakdown
+  const cashCount=done.filter(o=>o.payment==='cash').length;
+  const qrisCount=done.filter(o=>o.payment==='qris').length;
+  const tot2=cashCount+qrisCount||1;
+  const cashPct=Math.round(cashCount/tot2*100);
+  const qrisPct=100-cashPct;
+  document.getElementById('paymentStats').innerHTML=`
+    <div class="menu-chart">
+      <div class="chart-bar-row"><div class="chart-bar-label">💵 Tunai</div><div class="chart-bar-track"><div class="chart-bar-fill" style="width:${cashPct}%;background:linear-gradient(90deg,#22c55e,#86efac)"></div></div><div class="chart-bar-val">${cashPct}%</div></div>
+      <div class="chart-bar-row"><div class="chart-bar-label">📲 QRIS</div><div class="chart-bar-track"><div class="chart-bar-fill" style="width:${qrisPct}%;background:linear-gradient(90deg,#8b5cf6,#c4b5fd)"></div></div><div class="chart-bar-val">${qrisPct}%</div></div>
+    </div>
+    <div style="margin-top:1.2rem;font-size:0.82rem;color:var(--text-muted);">Tunai: ${cashCount} pesanan &nbsp;·&nbsp; QRIS: ${qrisCount} pesanan</div>
+  `;
+}
+
+// Init
+buildMenu();
+buildTables();
+buildSiteQR();
+</script>
+</body>
+</html>
